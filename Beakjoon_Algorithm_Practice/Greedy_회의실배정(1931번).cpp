@@ -28,7 +28,7 @@ int main(){
         cin >> v >> k;
         
         mm.insert(pair<int,int>(k,v));
-        
+      
     }
     
    //  for(iter = mm.begin(); iter != mm.end(); iter++){
@@ -51,20 +51,26 @@ int main(){
     
     
     int chk=0;
-    bool same = false;
+    bool change = false;
+    int keep = 0;
+    int finish = 0;
   
     for(iter = mm.begin(); iter != mm.end(); iter++){
 
         //bool chkPlus = false;
         
         chk++;
-       
+        change = false;
+        
+        
+        
         
         
         if(chk == 1){
             if(a >= iter->second){
                 count++;
-                //chkPlus = true;
+                change = true;
+                
             }
         }
         else{
@@ -72,21 +78,26 @@ int main(){
             if(a <= iter->second){
                 count++;
                 a = iter->first;
+                change = true;
                 //chkPlus = true;
             }
-            else if((a > iter->second) && (same==true) ){
+            else if((a > iter->second) && (keep == a) && ((iter->second)>=finish)){
                 count++;
                 a = iter->first;
+                change = true;
             }
             
             
         }
         
-         same = false;
-        
-        if(iter->first == iter-> second){
-            same  = true;
+        if(change==true){
+            keep = iter->second;
+            
+            if((iter->first) != (iter->second)){
+                finish = iter->first;
+            }
         }
+        
         
         
       
